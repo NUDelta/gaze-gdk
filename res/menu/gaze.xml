@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tukoapps.gaze.GazeActivity" >
+
+   <item
+        android:id="@+id/start"
+        android:title="@string/start"
+    	 />
+    <item
+        android:id="@+id/quit"
+        android:title="@string/quit"
+    	 />
+
+</menu>
