@@ -4,7 +4,11 @@
     <string name="app_name">Gaze</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="voice_trigger">Show me a photo</string>
+    <string name="voice_trigger">show me photos that are</string>
+    <string name="input1">say any tag you want ...</string>
+    <string name="input2">are beautiful</string>
+    <string name="input3">are sad</string>
+    <string name="input4">are popular</string>
     <string name="start">connect</string>
     <string name="quit">stop</string>
     <string name="home_team">soxs</string>

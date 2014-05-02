@@ -21,6 +21,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,8 +44,11 @@ public class GazeActivity extends Activity {
 		//mCardScroller = new CardScrollView(this);
         //mCardScroller.setAdapter(new CardAdapter(createCards(this)));
         //setContentView(mCardScroller);
-		startService(new Intent(GazeActivity.this, GazeService.class));
+		ArrayList<String> voiceResults = getIntent().getExtras()
+		        .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+		
+		Intent service = new Intent(GazeActivity.this, GazeService.class);
+		service.putExtra("voicetag", voiceResults.get(0));
+		startService(service);
 	}
-	
-
 }
