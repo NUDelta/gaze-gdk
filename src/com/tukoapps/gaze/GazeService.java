@@ -41,6 +41,8 @@ import com.google.android.glass.timeline.LiveCard.PublishMode;
 
 
 
+
+
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -57,6 +59,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.ImageView;
@@ -87,7 +91,7 @@ public class GazeService extends Service {
     private final Handler mHandler = new Handler();
     private final UpdateLiveCardRunnable mUpdateLiveCardRunnable =
         new UpdateLiveCardRunnable();
-    private static final long DELAY_MILLIS = 30000;
+    private static final long DELAY_MILLIS = 10000;
 
     @Override
     public void onCreate() {
@@ -295,6 +299,12 @@ public class GazeService extends Service {
 		                mLiveCard.navigate();
 		                AudioManager audio = (AudioManager) GazeService.this.getSystemService(Context.AUDIO_SERVICE);
 		                audio.playSoundEffect(Sounds.SUCCESS);
+		                // turn on display
+		                WakeLock wakeLock;
+		                PowerManager pm = (PowerManager) GazeService.this.getSystemService(Context.POWER_SERVICE);
+		                wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP
+		                        | PowerManager.ON_AFTER_RELEASE, "MyWakeLock");
+		                wakeLock.acquire();
 					}else {
 						mLiveCardView.setTextViewText(R.id.textviewdes, "No new images");
 						//mLiveCardView.setImageViewBitmap(R.id.picture, null);
